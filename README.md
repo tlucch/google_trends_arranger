@@ -1,2 +1,2 @@
 # GoogleTrendsArranger
-See description in README
+The company where I work generates Markert Reports, so one of the thing they do is analyze Google Trends. The problem is that Google Trends gives you a horrible .csv file, so every time a report needed to be done, each data had to be passed manually one by one from the .csv file to another excel file. In order to stop doing this manually and wasting LOTS of time, I created a python programm that reads the .csv file and arranges the information into a new excel file.
