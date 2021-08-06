@@ -21,10 +21,28 @@ char2 = ":"
 while sino == 0:
     
     contador3 = 0
-    Archivo = input("Introduzca el nombre del archivo: ")
+    error = True
     
-    with open(Archivo) as f:
+    while error == True:
+        try:
+            Archivo = input("Introduzca el nombre del archivo: ")
+            with open(Archivo) as f:
+                lis = [line.split() for line in f]
+                lineamarca = (lis[2])
         
+                marca = lineamarca[0]
+                marca = marca[marca.find(char1)+1 : marca.find(char2)]
+        
+                fechai = lineamarca[1]
+                fechai = fechai[1:]
+        
+                fechaf = lineamarca[3]
+                fechaf = fechaf[:-1]
+            error = False
+        except:
+            print("Archivo no encontrado! Chequear lo siguiente: " + "\n" + "- si el archivo esta en la carpeta" + "\n" + "- si inserto el .csv al final del nombre del archivo" + "\n" "- si el nombre del archivo esta escrito correctamente")
+            
+    with open(Archivo) as f:            
         lis = [line.split() for line in f]
         lineamarca = (lis[2])
         
@@ -98,7 +116,12 @@ while sino == 0:
                         except:
                             continue
     
-    otroarchivo = input("Queres leer otro archivo(y/n): ")
+    while error == False:
+        otroarchivo = input("Queres leer otro archivo(y/n): ")
+        if otroarchivo == "y" or otroarchivo == "n":
+            error = True
+        else:
+            print("Caracter invalido! Por favor introduzca 'y' para si o 'n' para no" + "\n" + "Intente nuevamente")
     if otroarchivo == "n":
         sino = 1
     
@@ -112,5 +135,11 @@ hoja["B1"] = "Fecha Finalizacion"
 hoja["C1"] = "Pais"
 hoja["D1"] = "Provincia"
 hoja["F1"] = "Busquedas"
-     
-wb.save("GOOGLE TRENDS.xlsx")
+
+while error == True:
+    try:     
+        wb.save("GOOGLE TRENDS.xlsx")
+        error = False
+    except:
+        print("Archivo GOOGLE TRENDS.xlsx abierto. Por favor cierrelo y presione enter")
+        enter= input()
