@@ -42,21 +42,9 @@ while sino == 0:
         except:
             print("Archivo no encontrado! Chequear lo siguiente: " + "\n" + "- si el archivo esta en la carpeta" + "\n" + "- si inserto el .csv al final del nombre del archivo" + "\n" "- si el nombre del archivo esta escrito correctamente")
             
-    with open(Archivo) as f:            
-        lis = [line.split() for line in f]
-        lineamarca = (lis[2])
+    with open(Archivo) as f:               
+        reader = csv.reader(f)     
         
-        marca = lineamarca[0]
-        marca = marca[marca.find(char1)+1 : marca.find(char2)]
-        
-        fechai = lineamarca[1]
-        fechai = fechai[1:]
-        
-        fechaf = lineamarca[3]
-        fechaf = fechaf[:-1]
-        
-    with open(Archivo) as f:    
-        reader = csv.reader(f)       
         for row in reader:
             contador3 = contador3 + 1
             if contador3 == 4:
@@ -122,6 +110,7 @@ while sino == 0:
             error = True
         else:
             print("Caracter invalido! Por favor introduzca 'y' para si o 'n' para no" + "\n" + "Intente nuevamente")
+            
     if otroarchivo == "n":
         sino = 1
     
